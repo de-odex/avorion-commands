@@ -1,6 +1,7 @@
 if onServer() then
 package.path = package.path .. ";data/scripts/lib/cmd/?.lua"
 require "common"
+require "math"
 professions = require "professions"
 ranks = require "ranks"
 
@@ -21,6 +22,19 @@ function initialize(help, action, ...)
 		player:sendChatMessage("Crew", 0, "Current ship's crew has been cleared.")
 	elseif action == "help" or action == nil then
 		player:sendChatMessage("Crew", 0, help)
+	elseif action == "epicfill" then
+		local ship = Entity(Player().craftIndex)
+		Entity(Player().craftIndex).crew = Crew()
+		ship:addCrew(math.ceil(1.375*ship.minCrew.engineers/3),CrewMan(CrewProfessionType.Engine, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.gunners/3),CrewMan(CrewProfessionType.Gunner, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.miners/3),CrewMan(CrewProfessionType.Miner, 1, 4))
+		ship:addCrew(math.ceil(1.375*ship.minCrew.mechanics/3),CrewMan(CrewProfessionType.Repair, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.sergeants/3),CrewMan(CrewProfessionType.Sergeant, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.lieutenants/3),CrewMan(CrewProfessionType.Lieutenant, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.commanders/2.5),CrewMan(CrewProfessionType.Commander, 1, 4))
+		ship:addCrew(math.ceil(ship.minCrew.generals/2.5),CrewMan(CrewProfessionType.General, 1, 4))
+		ship:addCrew(1, CrewMan(CrewProfessionType.Captain, 1))
+		player:sendChatMessage("Crew", 0, "Massively Epic Crew Has Boarded The Ship And Is Being Manly As All Fuck!!!")
 	else
 		player:sendChatMessage("Crew", 0, "Unknown action: "..action)
 	end
