@@ -1,11 +1,9 @@
 # Avorion Commands Package
 ## Contribution
-### General note
-Avorion Commands Package is currently **not looking** for pull requests. I'm planning on reworking some of the most basic stuff in this package to make sure it works correctly in new version of game.
-### New commands
-~~Currently package is open for any pull requests containing completely new commands that provides any useful functionality to the player or server administrator.~~
-### Modifying existing commands
-~~Before modifying any existing command we highly recommend talking with anyone about it. Project currenlty lacks and kind of road map, development tips or overall design.~~
+### Deadonstick's Prelude
+Original version can be found here: https://github.com/nthirtyone/avorion-commands
+
+This version was forked by Deadonstick to add features to the existing code. In all likelihood the author will have forgotten about this repo by the time you're reading this and will have added many more features by that time that he hasn't committed. As such feel free to contact the author for requests because he just might already have them.
 ## Commands
 ### /crew
 Adds or removes crew to currently boarded ship. Usage:
@@ -13,6 +11,7 @@ Adds or removes crew to currently boarded ship. Usage:
 `/crew add <profession> [rank] [level] [amount]`
 `/crew fill`
 `/crew clear`
+ADDED BY DEADONSTICK: '/crew epicfill' (gives maxed out crew to the ship along with a captain)
 ### /inventory
 Alias: `/inv`
 Modifies inventory of a player. Usage:
