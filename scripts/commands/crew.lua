@@ -8,5 +8,5 @@ function getDescription()
 end
 
 function getHelp()
-    return "Adds or removes crew to currently boarded ship. Usage:\n/crew help\n/crew add <profession> [rank] [level] [amount]\n/crew fill\n/crew clear"
+    return "Adds or removes crew to currently boarded ship. Usage:\n/crew help\n/crew add <profession> [rank] [level] [amount]\n/crew fill\n/crew clear\n/crew epicfill"
 end
