@@ -11,7 +11,7 @@ Adds or removes crew to currently boarded ship. Usage:
 `/crew add <profession> [rank] [level] [amount]`
 `/crew fill`
 `/crew clear`
-ADDED BY DEADONSTICK: '/crew epicfill' (gives maxed out crew to the ship along with a captain)
+ADDED BY DEADONSTICK: `/crew epicfill` (gives maxed out crew to the ship along with a captain)
 ### /inventory
 Alias: `/inv`
 Modifies inventory of a player. Usage:
