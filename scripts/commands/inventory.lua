@@ -3,10 +3,14 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 require "randomext"
 require "galaxy"
 require "cmd.common"
+require ("utility")
+require ("faction")
+
 weapons = require "cmd.weapons"
 rarities = require "cmd.rarities"
 materials = require "cmd.materials"
 scripts = require "cmd.upgrades"
+local TorpedoGenerator = require ("torpedogenerator")
 
 -- Main function of the command, called by game when command is used.
 function execute(sender, commandName, action, ...) -- weapontype, rarity, tech, material, amount, name
@@ -18,6 +22,8 @@ function execute(sender, commandName, action, ...) -- weapontype, rarity, tech, 
 			flag, msg = addTurrets(player, ...)
 		elseif action == "upgrade" then
 			flag, msg = addUpgrades(player, ...)
+		elseif action == "torpedo" then
+			flag, msg = addTorps(player, ...)
 		elseif action == "help" or action == nil then
 			flag, msg = true, getHelp()
 		else
@@ -43,7 +49,8 @@ function addTurrets(faction, weapontype, rarity, material, tech, amount)
 				local tech = math.max(1, tonumber(tech) or 6)
 				local dps = Balancing_TechWeaponDPS(tech)
 				local item = GenerateTurretTemplate(random():createSeed(), weapontype, dps, tech, rarity, material)
-				item.flavorText = "Shamelessly added with a command."
+				item.automatic = true
+				item.flavorText = "Made by the Steve Corporation."
 				addItems(faction, InventoryTurret(item), amount)
 				return true, string.format("%s added.", item.weaponName)
 			end
@@ -59,11 +66,34 @@ function addUpgrades(faction, script, rarity, amount)
 		rarity, err = getRarity(rarity or 0)
 		if rarity then
 			local item = SystemUpgradeTemplate(script, rarity, random():createSeed())
+			--local item1 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey1.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item2 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey2.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item3 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey3.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item4 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey4.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item5 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey5.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item6 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey6.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item7 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey7.lua", Rarity(RarityType.Legendary), random():createSeed())
+			--local item8 = SystemUpgradeTemplate("data/scripts/systems/teleporterkey8.lua", Rarity(RarityType.Legendary), random():createSeed())
 			addItems(faction, item, amount)
+			--addItems(faction, item1, 1)
+			--addItems(faction, item2, 1)
+			--addItems(faction, item3, 1)
+			--addItems(faction, item4, 1)
+			--addItems(faction, item5, 1)
+			--addItems(faction, item6, 1)
+			--addItems(faction, item7, 1)
+			--addItems(faction, item8, 1)
 			return true, string.format("%s added.", item.name)
 		end
 	end
 	return false, err
+end
+
+function addTorps(faction, rarity, warhead, body, amount)
+	local item = TorpedoGenerator.generate(0,0,0, getRarity(rarity or 0), 5, 9)
+	local launcher = TorpedoLauncher(faction.craft.craftIndex)
+	launcher.addTorpedo(item)
+	return true, string.format("%s added.", item.name)
 end
 
 -- Add amount of items to the inventory of a faction (or player).
@@ -78,8 +108,9 @@ end
 -- Identifies weaponType from a string or a number.
 function getWeaponType(w)
 	local weapontype
+
 	if tonumber(w) then 
-		weapontype = limit(tonumber(w), 12, 0)
+		weapontype = limit(tonumber(w), 16, 0)
 	else
 		weapontype = findString(weapons, w)
 	end

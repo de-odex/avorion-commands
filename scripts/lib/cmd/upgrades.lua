@@ -10,6 +10,7 @@ return
 	{function (str) return str:find("^hyp") end, "hyperspacebooster", "hyperspacebooster"},
 	{function (str) return str:find("^mil") or str:find("^mtcs") end, "militarytcs", "militarytcs"},
 	{function (str) return str:find("^min") end, "miningsystem", "miningsystem"},
+	{function (str) return str:find("^loot") end, "lootrangebooster", "lootrangebooster"},
 	{function (str) return str:find("^rad") end, "radarbooster", "radarbooster"},
 	{function (str) return str:find("^sca") end, "scannerbooster", "scannerbooster"},
 	{function (str) return str:find("^shi") end, "shieldbooster", "shieldbooster"},
