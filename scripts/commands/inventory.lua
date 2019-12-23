@@ -50,7 +50,7 @@ function addTurrets(faction, weapontype, rarity, material, tech, amount)
 				local dps = Balancing_TechWeaponDPS(tech)
 				local item = GenerateTurretTemplate(random():createSeed(), weapontype, dps, tech, rarity, material)
 				item.automatic = true
-				item.flavorText = "Made by the Steve Corporation."
+				-- item.flavorText = "Made by the Steve Corporation." -- Removing comment text from turret
 				addItems(faction, InventoryTurret(item), amount)
 				return true, string.format("%s added.", item.weaponName)
 			end
@@ -110,7 +110,7 @@ function getWeaponType(w)
 	local weapontype
 
 	if tonumber(w) then 
-		weapontype = limit(tonumber(w), 16, 0)
+		weapontype = limit(tonumber(w), 18, 0)
 	else
 		weapontype = findString(weapons, w)
 	end
