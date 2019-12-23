@@ -1,5 +1,12 @@
 # Avorion Commands Package
 ## Contribution
+### Cubesteak's Update
+Forked the fork so the command won't be forked in game. :)
+
+A few simple updates to account for changes to the game since Deadonstick's great work.
+
+Updates: Added Raw turrets, removed comments.
+
 ### Deadonstick's Prelude
 Original version can be found here: https://github.com/nthirtyone/avorion-commands
 
