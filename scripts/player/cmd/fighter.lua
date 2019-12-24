@@ -1,11 +1,15 @@
 package.path = package.path .. ";data/scripts/lib/?.lua"
 
+include("stringutility")
+include("utility")
 require ("galaxy")
 require ("randomext")
-require "cmd.common"
+require ("cmd.common")
 weapons = require "cmd.weapons"
 rarities = require "cmd.rarities"
 materials = require "cmd.materials"
+local FighterGenerator = include("fightergenerator")
+
 
 if onServer() then
 	function initialize(action, ...)
@@ -25,7 +29,7 @@ if onServer() then
 		terminate()
 	end
 
-	function addFighter(player, weapontype, rarity, material, tech, amount)
+	function addFighter(player, weapontype, rarity, material, tech)
 		local err
 		local ship = Entity(player.craftIndex)
 
@@ -50,8 +54,8 @@ if onServer() then
 		
 		local tech = math.max(1, tonumber(tech) or 6)
 		local dps = Balancing_TechWeaponDPS(tech)
-		
-		local fighter = GenerateFighterTemplate(random():createSeed(), weapontype, dps, tech, Rarity(rarity), Material(material))
+		local seed = Random(Seed(appTimeMs()))
+		local fighter = FighterGenerator.generateFighter(seed, weapontype, dps, tech, Material(material), Rarity(rarity))
 		
 		local hangar = Hangar(ship.index);
 		
