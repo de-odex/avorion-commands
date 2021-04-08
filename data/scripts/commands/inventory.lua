@@ -109,7 +109,7 @@ end
 function getWeaponType(w)
 	local weapontype
 
-	if tonumber(w) then 
+	if tonumber(w) then
 		weapontype = limit(tonumber(w), 18, 0)
 	else
 		weapontype = findString(weapons, w)
@@ -122,7 +122,7 @@ end
 -- Identifies rarity from a string or a number.
 function getRarity(r)
 	local rarity
-	if tonumber(r) then 
+	if tonumber(r) then
 		rarity = limit(tonumber(r), 5, -1)
 	else
 		rarity = findString(rarities, r)
@@ -135,7 +135,7 @@ end
 -- Identifies material from a string or a number.
 function getMaterial(m)
 	local material
-	if tonumber(m) then 
+	if tonumber(m) then
 		material = limit(tonumber(m), 6, 0)
 	else
 		material = findString(materials, m)
