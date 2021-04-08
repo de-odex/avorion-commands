@@ -11,7 +11,7 @@ rarities = include "cmd/rarities"
 materials = include "cmd/materials"
 scripts = include "cmd/upgrades"
 local TurretGenerator = include ("turretgenerator")
-local TorpedoGenerator = include ("torpedogenerator")
+local TorpedoGenerator = (include ("torpedogenerator")).new()
 
 -- Main function of the command, called by game when command is used.
 function execute(sender, commandName, action, ...) -- weapontype, rarity, tech, material, amount, name
@@ -91,9 +91,13 @@ function addUpgrades(faction, script, rarity, amount)
 end
 
 function addTorps(faction, rarity, warhead, body, amount)
-	local item = TorpedoGenerator.generate(0,0,0, getRarity(rarity or 0), 5, 9)
-	local launcher = TorpedoLauncher(faction.craft.craftIndex)
-	launcher.addTorpedo(item)
+	-- TODO: warhead and body setting
+	local item = TorpedoGenerator:generate(0,0,0, getRarity(rarity or 0), 5, 9)
+	local launcher = TorpedoLauncher(faction.craft.index)
+	-- specific to torpedoes only
+	for i=1,tonumber(amount) or 1 do
+		launcher:addTorpedo(item)
+	end
 	return true, string.format("%s added.", item.name)
 end
 
