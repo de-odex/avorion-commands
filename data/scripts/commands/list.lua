@@ -1,13 +1,13 @@
 package.path = package.path .. ";data/scripts/lib/cmd/?.lua"
-require "common"
+include "common"
 lists = -- this is a list of lists, kek
 {
-	{function (str) return str:find("^[pP]ro") end, require("professions"), "Professions"},
-	{function (str) return str:find("^[rR]an") end, require("ranks"), "Ranks"},
-	{function (str) return str:find("^[mM]at") end, require("materials"), "Materials"},
-	{function (str) return str:find("^[rR]ar") end, require("rarities"), "Rarities"},
-	{function (str) return str:find("^[uU]pg") end, require("upgrades"), "Upgrades"},
-	{function (str) return str:find("^[wW]ea") end, require("weapons"), "Weapons"}
+	{function (str) return str:find("^[pP]ro") end, include("professions"), "Professions"},
+	{function (str) return str:find("^[rR]an") end, include("ranks"), "Ranks"},
+	{function (str) return str:find("^[mM]at") end, include("materials"), "Materials"},
+	{function (str) return str:find("^[rR]ar") end, include("rarities"), "Rarities"},
+	{function (str) return str:find("^[uU]pg") end, include("upgrades"), "Upgrades"},
+	{function (str) return str:find("^[wW]ea") end, include("weapons"), "Weapons"}
 }
 
 function execute(sender, commandName, name, ...)

@@ -1,5 +1,5 @@
 package.path = package.path .. ";data/scripts/lib/cmd/?.lua"
-require "common"
+include "common"
 
 function execute(sender, commandName, otherPlayerName, ...)
 	local requestor = Player(sender)

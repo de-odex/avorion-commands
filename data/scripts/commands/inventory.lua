@@ -1,16 +1,16 @@
 package.path = package.path .. ";data/scripts/lib/?.lua"
 
-require "randomext"
-require "galaxy"
-require "cmd.common"
-require ("utility")
-require ("faction")
+include "randomext"
+include "galaxy"
+include "cmd/common"
+include ("utility")
+include ("faction")
 
-weapons = require "cmd.weapons"
-rarities = require "cmd.rarities"
-materials = require "cmd.materials"
-scripts = require "cmd.upgrades"
-local TorpedoGenerator = require ("torpedogenerator")
+weapons = include "cmd/weapons"
+rarities = include "cmd/rarities"
+materials = include "cmd/materials"
+scripts = include "cmd/upgrades"
+local TorpedoGenerator = include ("torpedogenerator")
 
 -- Main function of the command, called by game when command is used.
 function execute(sender, commandName, action, ...) -- weapontype, rarity, tech, material, amount, name

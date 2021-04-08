@@ -2,12 +2,12 @@ package.path = package.path .. ";data/scripts/lib/?.lua"
 
 include("stringutility")
 include("utility")
-require ("galaxy")
-require ("randomext")
-require ("cmd.common")
-weapons = require "cmd.weapons"
-rarities = require "cmd.rarities"
-materials = require "cmd.materials"
+include ("galaxy")
+include ("randomext")
+include ("cmd/common")
+weapons = include "cmd/weapons"
+rarities = include "cmd/rarities"
+materials = include "cmd/materials"
 local FighterGenerator = include("fightergenerator")
 
 

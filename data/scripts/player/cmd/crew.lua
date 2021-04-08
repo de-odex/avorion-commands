@@ -1,9 +1,9 @@
 if onServer() then
 package.path = package.path .. ";data/scripts/lib/cmd/?.lua"
-require "common"
-require "math"
-professions = require "professions"
-ranks = require "ranks"
+include "common"
+include "math"
+professions = include "professions"
+ranks = include "ranks"
 
 function initialize(help, action, ...)
 	local flag, msg = false, ""

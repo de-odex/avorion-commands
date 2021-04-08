@@ -1,7 +1,7 @@
 if onServer() then
 
 package.path = package.path .. ";data/scripts/lib/?.lua"
-require ("goods")
+include ("goods")
 
 function initialize(name, quantity, ...)
 	local player = Player()
