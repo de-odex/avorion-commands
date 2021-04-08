@@ -10,6 +10,7 @@ weapons = include "cmd/weapons"
 rarities = include "cmd/rarities"
 materials = include "cmd/materials"
 scripts = include "cmd/upgrades"
+local TurretGenerator = include ("turretgenerator")
 local TorpedoGenerator = include ("torpedogenerator")
 
 -- Main function of the command, called by game when command is used.
@@ -48,7 +49,7 @@ function addTurrets(faction, weapontype, rarity, material, tech, amount)
 			if material then
 				local tech = math.max(1, tonumber(tech) or 6)
 				local dps = Balancing_TechWeaponDPS(tech)
-				local item = GenerateTurretTemplate(random():createSeed(), weapontype, dps, tech, rarity, material)
+				local item = TurretGenerator.generateSeeded(random():createSeed(), weapontype, dps, tech, rarity, material)
 				item.automatic = true
 				-- item.flavorText = "Made by the Steve Corporation." -- Removing comment text from turret
 				addItems(faction, InventoryTurret(item), amount)
